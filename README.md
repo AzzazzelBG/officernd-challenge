@@ -1,5 +1,7 @@
 # OfficeRnD QA Challenge
 
+[![Assignment 02 — UI Tests](https://github.com/AzzazzelBG/officernd-challenge/actions/workflows/ui-tests.yml/badge.svg)](https://github.com/AzzazzelBG/officernd-challenge/actions/workflows/ui-tests.yml)
+
 QA challenge solution by **Aleksandar Drinkov**, split into two parts: an API
 test plan and a UI automation suite.
 
@@ -42,3 +44,20 @@ npm install
 cp .env.example .env
 npm test
 ```
+
+## Continuous Integration
+
+The UI suite runs on **GitHub Actions** ([`.github/workflows/ui-tests.yml`](.github/workflows/ui-tests.yml)).
+
+- The workflow is **scoped to `assignment-02/`** — it only runs when files in
+  that folder (or the workflow itself) change, so edits to the API test plan or
+  this README never trigger a browser run.
+- It runs inside the official `mcr.microsoft.com/playwright` container, pinned to
+  the same Playwright version the suite is locked to.
+- Credentials are injected from repository **secrets** (`BASE_URL`, `ORG_SLUG`,
+  `USER_EMAIL`, `USER_PASSWORD`) — never from the committed `.env.example`.
+- The HTML report (with traces/screenshots/videos on failure) is uploaded as a
+  build artifact, and a reviewer can trigger a run manually via **Run workflow**.
+
+> Note: the suite exercises live OfficeRnD **staging**, so a run also depends on
+> that environment and the configured credentials being available.

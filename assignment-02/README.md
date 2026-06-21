@@ -57,6 +57,19 @@ without code changes:
 | `USER_EMAIL`    | Login email for the automation user      | _(required)_                     |
 | `USER_PASSWORD` | Login password for the automation user   | _(required)_                     |
 
+## Continuous Integration
+
+This suite runs automatically on **GitHub Actions**
+([`.github/workflows/ui-tests.yml`](../.github/workflows/ui-tests.yml) at the repo root).
+
+- **Triggers only for this folder** via a `paths:` filter (`assignment-02/**`),
+  on every `push` and `pull_request`, plus manual `workflow_dispatch`.
+- Executes in the official `mcr.microsoft.com/playwright:v1.55.0-jammy` image
+  (pinned to match the [Playwright 1.55 pin].
+- Steps: `npm ci` → `npm run typecheck` → `npm test`.
+- Credentials come from repo **secrets**, not the committed `.env.example`.
+- Uploads `playwright-report/` as an artifact (retained 14 days).
+
 ## Project structure
 
 ```
