@@ -1,0 +1,21 @@
+{
+  "name": "officernd-ui-automation",
+  "version": "1.0.0",
+  "description": "Playwright + TypeScript UI automation for the OfficeRnD Members page filter scenario.",
+  "private": true,
+  "scripts": {
+    "test": "playwright test",
+    "test:headed": "playwright test --headed",
+    "test:ui": "playwright test --ui",
+    "test:debug": "playwright test --debug",
+    "report": "playwright show-report",
+    "postinstall": "playwright install chromium",
+    "typecheck": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.55.0",
+    "@types/node": "^22.10.0",
+    "dotenv": "^16.4.7",
+    "typescript": "^5.7.0"
+  }
+}
